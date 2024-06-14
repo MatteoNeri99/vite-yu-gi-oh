@@ -24,7 +24,7 @@ export default {
 
     <h3>{{ cards.name }}</h3>
 
-    <p>{{ cards.type }}</p>
+    <p>{{ cards.archetype }}</p>
   </article>
 
 

@@ -17,23 +17,34 @@ export default {
 
     MainCardContainer
     
-  },
-  methods:{
+  },methods:{
+    getCards(dati){
+
+      
+        this.cards = dati
+
     
-    getCard(){
+ 
+     
 
-        axios.get('https://db.ygoprodeck.com/api/v7/cardinfo.php?num=20&offset=0')
-        .then( ( response ) => {
-            console.log(response.data.data)
-            this.cards = response.data.data
+    }
+  }
+  // methods:{
+    
+  //   getCard(){
 
-        })
+  //       axios.get('https://db.ygoprodeck.com/api/v7/cardinfo.php?num=20&offset=0')
+  //       .then( ( response ) => {
+  //           console.log(response.data.data)
+  //           this.cards = response.data.data
+
+  //       })
         
-    }
-  },
-    created(){
-      this.getCard();
-    }
+  //   }
+  // },
+  //   created(){
+  //     this.getCard();
+  //   }
 
 }
 </script>
@@ -42,7 +53,7 @@ export default {
 
    <main>
 
-    <MainSelect/>
+    <MainSelect @dati="getCards"/>
     <MainCardContainer  :cards="cards"/>
 
 

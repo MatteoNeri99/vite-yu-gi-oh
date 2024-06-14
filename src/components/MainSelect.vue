@@ -1,14 +1,30 @@
-<script>
 
+<script>
+import axios from 'axios'
 
 export default {
   data() {
     return {
-      
+      getArchetype:[],
     }
   },
   components:{
     
+  },methods:{
+    getArchitipo(){
+
+      axios.get('https://db.ygoprodeck.com/api/v7/cardinfo.php?num=40&offset=0')
+      .then( ( response ) => {
+          console.log(response.data.data)
+          this.getArchetype = response.data.data
+
+      })
+
+},
+  },
+ 
+  created(){
+    this.getArchitipo();
   }
 }
 </script>
@@ -16,13 +32,10 @@ export default {
 <template>
 
     <section>
-        <select name="cads" id="cards">
+        <select name="archetype" id="archetype" >
 
-        <option value="Spell-Card">Spell Card</option>
-        <option value="Effect-Monster">Effect Monster</option>
-        <option value="Trap-Card">Trap Card</option>
-       
-
+        <option value="archetype" v-for="(element,index) in getArchetype" :key="index" @click="$emit('dati' , getArchetype)">{{ element.archetype }}</option>
+      
         </select> 
     </section>
 
